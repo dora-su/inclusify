@@ -1,0 +1,15 @@
+.textpage-container {
+    display: grid;
+    grid-template-columns: 40% 10% 40%;
+    padding:3em;
+    height: 100vh;
+}
+
+.input-box {
+    height:80%;
+    width:100%;
+}
+
+.go-button {
+    height:3em;
+}

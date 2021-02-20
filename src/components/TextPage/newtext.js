@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import "./landing.css"
 
-class LandingPage extends React.Component {
+class NewText extends React.Component {
   constructor() {
 	super();
    }
@@ -9,10 +8,10 @@ class LandingPage extends React.Component {
 
   render() {
     return (
-        <div>hi</div>
+<div>new</div>
     
     );
   }
 }
 
-export default LandingPage;
+export default NewText;

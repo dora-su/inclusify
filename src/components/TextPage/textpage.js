@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import "./textpage.css"
+import NewText from "./newtext"
 
 class TextPage extends React.Component {
   constructor() {
@@ -9,7 +10,11 @@ class TextPage extends React.Component {
 
   render() {
     return (
-        <div>Text</div>
+        <div className="textpage-container">
+            <input type="text" className="input-box"/>
+            <button className="go-button">Go</button>
+        <NewText/>
+        </div>
     
     );
   }
