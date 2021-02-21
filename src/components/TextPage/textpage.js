@@ -188,7 +188,7 @@ class TextPage extends React.Component {
 
                     <Container className="page-container" onKeyDown={this.onKeyDown}>
                         <span class="text-title">Type here:</span>
-                        <div class="text-container">
+                        <div class="text-container" style={{marginTop: "20px"}}>
                             {text}
 
                         </div>
