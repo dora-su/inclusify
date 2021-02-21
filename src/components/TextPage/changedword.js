@@ -24,9 +24,11 @@ class ChangedWord extends React.Component {
    closeMenu() {
     this.setState({menuOpen:false})
    }
+
    changeWord(e) {
-     console.log(e.target.value)
+    
     this.setState({selected:e.target.value})
+    this.props.replaceWord(this.props.index, this.props.synonyms[e.target.value]);
    }
 
 
@@ -57,7 +59,7 @@ class ChangedWord extends React.Component {
     {synonym_buttons}
     </Popover>
       <button onClick={this.openMenu} 
-      className={(this.props.selected==-1) ? "original-word" : "changed-word"}>{word}</button>
+      className={(this.props.selected==-1) ? "word-btn changed-word" : "word-btn original-word"}>{word}</button>
       </span>
     );
   }
