@@ -200,7 +200,6 @@ class TextPage extends React.Component {
             </div>);
 
         }
-
         return (
             <div>
                 <div>
@@ -216,7 +215,7 @@ class TextPage extends React.Component {
                             <button onClick={this.toChanged}className="inclusify-btn">Inclusify</button>
                         </div>
                         
-                      <div className="copy-text"><button className="bg-transparent border-0 copy-text-button" onClick={this.copyToClipboard}> {this.state.copied} </button></div>
+                      <div className="copy-text"><button style={buttonStyles} className="bg-transparent border-0 copy-text-button" onClick={this.copyToClipboard}> {this.state.copied} </button></div>
                         
                     </Container>
                 </div>
