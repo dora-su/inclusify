@@ -272,8 +272,22 @@ textarea{
 }
 
 .copy-text{
-    margin-top:3px;
+    margin-top:4px;
     font-size: 14px;
-    
+    color: #999999;
     text-align: right;
+    margin-right:0;
+    padding: 0;
+}
+
+.copy-text-button{
+    text-decoration: underline solid transparent;
+  transition: text-decoration 1s ease;
+    color: #999999;
+    margin:0;
+    padding:0;
+}
+
+.copy-text-button:hover {
+    text-decoration: underline;
 }

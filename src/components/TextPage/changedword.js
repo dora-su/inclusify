@@ -60,8 +60,8 @@ class ChangedWord extends React.Component {
       }
     }
     
-    console.log("synoym length:" ,synonym_buttons.length);
-    console.log(synonym_buttons[0].props.children)
+    // console.log("synoym length:" ,synonym_buttons.length);
+    // console.log(synonym_buttons[0].props.children)
 
     return (
       <span>

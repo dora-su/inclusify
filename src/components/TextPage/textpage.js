@@ -55,7 +55,7 @@ class TextPage extends React.Component {
             mode: 0,
             caret_pos: 0,
             loading: false,
-            copied: ''
+            copied: 'Copy to clipboard.'
         }
 
     }
@@ -78,7 +78,8 @@ class TextPage extends React.Component {
                 mode: 0,
                 caret_pos: e.target.selectionStart,
                 input_text: e.target.value,
-                loading: false
+                loading: false,
+                copied: "Copy to clipboard."
             }
         )
 
@@ -168,13 +169,20 @@ class TextPage extends React.Component {
         this.setState({ changed_text: new_text, changed_raw:text_arr });
        
     }
+
     
 
     copyToClipboard = (e) => {
-        document.getElementsByTagName('textarea').length!==0  ?  document.getElementsByTagName('textarea')[0].select() : document.getElementById('changed-text-area')[0].select();
-        document.execCommand('copy');
-        e.target.focus();
-        this.setState({copied: 'Copied!'})
+        if (navigator.clipboard) 
+        if (this.state.mode == 0) {
+            navigator.clipboard.writeText(this.state.input_text)
+        }else{
+            let innertext = document.getElementById("changed-text-area").innerText;
+            innertext = innertext.substr(0,innertext.length-1);
+            navigator.clipboard.writeText(innertext)
+            // navigator.clipboard.writeText(tistext)
+        }
+        this.setState({copied:"Copied!"})
     }
 
 
@@ -192,6 +200,7 @@ class TextPage extends React.Component {
             </div>);
 
         }
+
         return (
             <div>
                 <div>
@@ -206,7 +215,8 @@ class TextPage extends React.Component {
                             {text}
                             <button onClick={this.toChanged}className="inclusify-btn">Inclusify</button>
                         </div>
-                        {(document.queryCommandSupported('copy') && document.getElementsByTagName('textarea')!==null )&& <div className="copy-text"><button onClick={this.copyToClipboard}> Click to copy text.</button> {this.state.copied}</div>}
+                        
+                      <div className="copy-text"><button className="bg-transparent border-0 copy-text-button" onClick={this.copyToClipboard}> {this.state.copied} </button></div>
                         
                     </Container>
                 </div>
