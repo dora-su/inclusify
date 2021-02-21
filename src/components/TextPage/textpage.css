@@ -238,6 +238,10 @@ textarea{
     transition: 0.5s; 
 }
 
+.inclusify-btn.btn-1{
+    right:3em;
+}
+
 .inclusify-btn:hover{
     background-position: right center;
 }
