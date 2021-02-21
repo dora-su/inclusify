@@ -46,7 +46,7 @@ class ChangedWord extends React.Component {
 
     if (this.props.synonyms.length == 0) {
       synonym_buttons.push(
-        <p style={{ maxWidth: "150px" }}>
+        <p style={{ maxWidth: "150px", marginBlockEnd: "0px" }}>
           This word may be inappropriate or insensitive.
         </p>
       );
@@ -59,6 +59,9 @@ class ChangedWord extends React.Component {
         );
       }
     }
+    
+    console.log("synoym length:" ,synonym_buttons.length);
+    console.log(synonym_buttons[0].props.children)
 
     return (
       <span>
@@ -81,8 +84,7 @@ class ChangedWord extends React.Component {
             ) : (
               <div className="btn-con">{synonym_buttons}</div>
             )}
-
-            {(synonym_buttons.length !== 0) && <button
+            {(synonym_buttons[0].props.children !== "This word may be inappropriate or insensitive.") && <button
               className="choose-btn revert-btn"
               onClick={() => {
                 this.setState({ selected: -1 });

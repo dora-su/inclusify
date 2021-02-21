@@ -173,7 +173,7 @@ class TextPage extends React.Component {
         let text = [];
         if (this.state.mode == 0) {
             text.push(<textarea autoFocus tabIndex="0" id="text-area" onClick={this.setCaret} className="text-area" onChange={this.updateInput} value={this.state.input_text}
-                selectionEnd={this.state.caret_pos} placeholder="type your text here"
+                selectionEnd={this.state.caret_pos} placeholder="Type your text here"
             />)
         } else {
 
