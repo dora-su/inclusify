@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {LinkContainer} from 'react-router-bootstrap'
 import {Button} from 'react-bootstrap'
 import styles from "./landing.module.css";
 import logo from "../Header/logo.png";
@@ -15,9 +16,11 @@ export default function LandingPage() {
           <h1 className={styles.title}>
             Help make your writing more inclusive, unbiased, and professional.
           </h1>
-          <Button href="/app" size="lg">
+          <LinkContainer to="/app">
+          <Button size="lg">
             Get started
           </Button>
+          </LinkContainer>
           <img className={styles.picture} src={illustration} />
         </div>
       </div>
