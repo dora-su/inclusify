@@ -47,6 +47,7 @@ class TextPage extends React.Component {
         this.state = {
             input_text: "hello my name is Hughy and I am a bee keeper",
             changed_text: [],
+            changed_raw:[],
             mode: 0,
             caret_pos: 0,
             loading: false
@@ -54,10 +55,10 @@ class TextPage extends React.Component {
 
     }
 
-     async onKeyDown(e) {
-        let car = this.state.caret_pos
+     onKeyDown(e) {
+
         if (this.state.mode == 1) {
-            await this.toEdit()
+            this.toEdit()
 
         }
     }
@@ -108,53 +109,63 @@ class TextPage extends React.Component {
     }
 
     replaceWord(old_index, new_word) {
-        let changed = this.state.changed_text
-        changed[old_index] = new_word + " ";
-        console.log(changed);
-        this.setState({ changed_text: changed, input_text: changed.join("") })
+        let changed = this.state.changed_raw
+        
+        changed[old_index] = new_word;
+       // console.log(changed.join(""));
+       changed.splice(changed.indexOf("¶")-1,1)
+       changed.splice(changed.indexOf("¶"),2)
+
+        this.setState({ changed_raw: changed, input_text: changed.join("") })
     }
 
     changeText() {
 
         let text = this.state.input_text;
         let index_c = this.state.caret_pos;
-        let text_arr = (text.substring(0,index_c)+" ¶ "+text.substring(index_c)).split(" ")
+        let text_arr = (text.substring(0,index_c)+" ¶ "+text.substring(index_c)).split(/(?=[ /n])|(?<=[ /n])/g)
         let new_text = [];
 
         let adjust = 0;
-        let before_caret = text_arr.indexOf("¶")-1;
-        console.log(before_caret)
+        let space_count =0;
         for (let i = 0; i < text_arr.length; i++) {
             //do some function to i to check if bad word
-            let word = text_arr[i].trim()
-            if (word == "hello") { //if word is bad word from function 
+            let word = text_arr[i]
+            console.log(word)
+            if (word.trim()==""){
+                space_count+=1
+            }
+            if (word == "hello" ) { //if word is bad word from function 
+                console.log(i)
                 new_text.push(<span><ChangedWord index={i} original_word={word} synonyms={["boop", "beep"]}
                     replaceWord={this.replaceWord} />{" "}</span>) //get synonyms from json file
             } else if(word=="¶") {
                 new_text.push(<span className="caret">|</span>)
             }
             else {
-                if (i==before_caret){
-                    new_text.push(word)
+                if (i==text_arr.indexOf("¶")+1 || i==text_arr.indexOf("¶")-1){
+                    continue;
                 } else {
-                new_text.push(word + " ")
+                new_text.push(word)
+               
                 }
             }
         }
 
-        this.setState({ changed_text: new_text });
+        this.setState({ changed_text: new_text, changed_raw:text_arr });
+       
     }
 
     render() {
 
         let text = [];
         if (this.state.mode == 0) {
-            text.push(<textarea autoFocus id="text-area" onClick={this.setCaret} className="text-area" onChange={this.updateInput} value={this.state.input_text}
+            text.push(<textarea autoFocus tabIndex="0" id="text-area" onClick={this.setCaret} className="text-area" onChange={this.updateInput} value={this.state.input_text}
                 selectionEnd={this.state.caret_pos}
             />)
         } else {
 
-            text.push(<div tabindex="0" className="changed-c"><div onClick={this.toEdit} className="changed-text-c" onKeyDown={this.onKeyDown}>
+            text.push(<div tabindex="0" className="changed-c" onKeyDown={this.onKeyDown}><div onClick={this.toEdit} className="changed-text-c" onKeyDown={this.onKeyDown}>
             </div>
                 {this.state.changed_text}
             </div>);
@@ -170,7 +181,7 @@ class TextPage extends React.Component {
                             {text}
 
                         </div>
-                        <button onClick={this.toChanged} />
+                        
                     </Container>
                 </div>
 
