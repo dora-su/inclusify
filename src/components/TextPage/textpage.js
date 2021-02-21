@@ -189,7 +189,7 @@ class TextPage extends React.Component {
     render() {
         let text = [];
         if (this.state.mode == 0) {
-            text.push(<textarea autoFocus placeholder="Type your text here." tabIndex="0" id="text-area" onClick={this.setCaret} className="text-area" onChange={this.updateInput} value={this.state.input_text}
+            text.push(<textarea autoFocus data-gramm_editor="false" placeholder="Type your text here." tabIndex="0" id="text-area" onClick={this.setCaret} className="text-area" onChange={this.updateInput} value={this.state.input_text}
                 selectionEnd={this.state.caret_pos}
             />)
         } else {
@@ -215,7 +215,7 @@ class TextPage extends React.Component {
                             <button onClick={this.toChanged}className="inclusify-btn">Inclusify</button>
                         </div>
                         
-                      <div className="copy-text"><button style={buttonStyles} className="bg-transparent border-0 copy-text-button" onClick={this.copyToClipboard}> {this.state.copied} </button></div>
+                      <div className="copy-text"><button className="bg-transparent border-0 copy-text-button" onClick={this.copyToClipboard}> {this.state.copied} </button></div>
                         
                     </Container>
                 </div>
