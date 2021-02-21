@@ -33,7 +33,7 @@ class ChangedWord extends React.Component {
       this.props.synonyms[e.target.value]
     );
   }
-  
+
   render() {
     let word;
     if (this.state.selected == -1) {
@@ -45,7 +45,11 @@ class ChangedWord extends React.Component {
     let synonym_buttons = [];
 
     if (this.props.synonyms.length == 0) {
-      synonym_buttons.push(<p style={{maxWidth: "150px"}}>This word may be inappropriate or insensitive.</p>);
+      synonym_buttons.push(
+        <p style={{ maxWidth: "150px" }}>
+          This word may be inappropriate or insensitive.
+        </p>
+      );
     } else {
       for (let i = 0; i < this.props.synonyms.length; i++) {
         synonym_buttons.push(
@@ -72,8 +76,13 @@ class ChangedWord extends React.Component {
           }}
         >
           <div className="word-menu">
-            {synonym_buttons}
-            {(this.props.synonyms.length !== 0) && <button
+            {synonym_buttons.length == 0 ? (
+              <span className="warning">Sensitive word no alternative</span>
+            ) : (
+              <div className="btn-con">{synonym_buttons}</div>
+            )}
+
+            {(synonym_buttons.length !== 0) && <button
               className="choose-btn revert-btn"
               onClick={() => {
                 this.setState({ selected: -1 });
@@ -99,9 +108,9 @@ class ChangedWord extends React.Component {
         <button
           onClick={this.openMenu}
           className={
-            this.props.selected == -1
-              ? "word-btn changed-word"
-              : "word-btn original-word"
+            this.state.selected == -1
+              ? "word-btn original-word"
+              : "word-btn changed-word"
           }
         >
           {word}
