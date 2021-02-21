@@ -55,6 +55,7 @@ class TextPage extends React.Component {
             mode: 0,
             caret_pos: 0,
             loading: false,
+            charCount:0,
             copied: 'Copy to clipboard.'
         }
 
@@ -79,6 +80,7 @@ class TextPage extends React.Component {
                 caret_pos: e.target.selectionStart,
                 input_text: e.target.value,
                 loading: false,
+                charCount: e.target.value.length,
                 copied: "Copy to clipboard."
             }
         )
@@ -122,7 +124,7 @@ class TextPage extends React.Component {
        changed.splice(changed.indexOf("¶")-1,1)
        changed.splice(changed.indexOf("¶"),2)
 
-        this.setState({ changed_raw: changed, input_text: changed.join("") })
+        this.setState({ changed_raw: changed, input_text: changed.join(""), charCount:changed.join("").length })
     }
 
     isBadWord(word){
@@ -166,7 +168,9 @@ class TextPage extends React.Component {
                 }
             }
         }
-        this.setState({ changed_text: new_text, changed_raw:text_arr });
+
+        
+        this.setState({ changed_text: new_text, changed_raw:text_arr});
        
     }
 
@@ -194,12 +198,14 @@ class TextPage extends React.Component {
             />)
         } else {
 
-            text.push(<div tabindex="0" className="changed-c" id="changed-text-area" onKeyDown={this.onKeyDown}><div onClick={this.toEdit} className="changed-text-c" onKeyDown={this.onKeyDown}>
+            text.push(<div tabindex="0" className="changed-c" id="changed-text-area" onKeyDown={this.onKeyDown}><div onClick={this.toEdit} className="changed-text-c" onKeyDown={this.onKeyDown}>            
             </div>
                 {this.state.changed_text}
             </div>);
 
         }
+        
+
         return (
             <div>
                 <div>
@@ -215,7 +221,7 @@ class TextPage extends React.Component {
                             <button onClick={this.toChanged}className="inclusify-btn">Inclusify</button>
                         </div>
                         
-                      <div className="copy-text"><button className="bg-transparent border-0 copy-text-button" onClick={this.copyToClipboard}> {this.state.copied} </button></div>
+                      <div className="copy-text"><div className="char-count">{this.state.charCount}</div> <div className="copy-button"><button className="bg-transparent border-0 copy-text-button" onClick={this.copyToClipboard}> {this.state.copied} </button></div></div>
                         
                     </Container>
                 </div>

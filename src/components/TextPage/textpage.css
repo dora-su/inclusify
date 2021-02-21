@@ -289,6 +289,9 @@ textarea {
     text-align: right;
     margin-right:0;
     padding: 0;
+    /* display: flex;
+    flex-wrap:nowrap; */
+    align-items: justify;
 }
 
 .copy-text-button{
@@ -301,4 +304,12 @@ textarea {
 
 .copy-text-button:hover {
     text-decoration: underline;
+}
+
+.char-count{
+    float:left;
+}
+
+.copy-button{
+    float:right;
 }
