@@ -14,9 +14,12 @@
     "react-contenteditable": "^3.3.5",
     "react-dom": "^17.0.1",
     "react-router": "^5.2.0",
+    "react-router-animation": "^1.0.10",
+    "react-router-bootstrap": "^0.25.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
     "react-use-caret-position": "^1.0.2",
+    "react-slide-animation-router": "^2.0.3",
     "web-vitals": "^1.1.0"
   },
   "scripts": {

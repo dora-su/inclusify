@@ -2,45 +2,52 @@ import logo from './logo.svg';
 import './App.css';
 import React, { Component } from 'react';
 import TextPage from "./components/TextPage/textpage"
+import Header from "./components/Header/Header"
 import Landing from "./components/LandingPage/landing"
 import {
   BrowserRouter as Router,
+  Link,
   Switch,
   Route,
-  Link
-} from "react-router-dom";
+  Redirect,
+  useLocation,
+  useParams
+} from 'react-router-dom'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
+
+
+function Content () {
+  const location = useLocation()
+
+  return (
+    <div className='fill content'>
+      <TransitionGroup>
+        <CSSTransition
+          timeout={300}
+          classNames='fade'
+          key={location.key}
+          location={location}
+          exit={false}
+        >
+          <Switch location={location}>
+          
+          <Route exact path="/app"><TextPage/></Route>
+          <Route exact path="/">hi</Route>
+          <Route exact path="/about"><TextPage/></Route>
+          </Switch>
+        </CSSTransition>
+      </TransitionGroup>
+    </div>
+  )
+}
 
 class App extends React.Component {
-  constructor() {
-    super();
-  }
-
-
+  
   render() {
     return (
       <Router>
-      <div>
-        <div className="nav-bar">
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/app">About</Link>
-            </li>
-          </ul>
-        </nav>
-        </div>
-        <Switch>
-          <Route path="/app">
-            <TextPage />
-          </Route>
-          <Route path="/">
-            <Landing/>
-          </Route>
-        </Switch>
-      </div>
+      <Header/>
+      <Content/>
       </Router>
 
     );
