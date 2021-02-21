@@ -172,7 +172,7 @@ class TextPage extends React.Component {
     render() {
         let text = [];
         if (this.state.mode == 0) {
-            text.push(<textarea autoFocus placeholder="Type your text here." tabIndex="0" id="text-area" onClick={this.setCaret} className="text-area" onChange={this.updateInput} value={this.state.input_text}
+            text.push(<textarea autoFocus placeholder="Start writing anything!" tabIndex="0" id="text-area" onClick={this.setCaret} className="text-area" onChange={this.updateInput} value={this.state.input_text}
                 selectionEnd={this.state.caret_pos}
             />)
         } else {
@@ -193,9 +193,9 @@ class TextPage extends React.Component {
                         <span class="text-title">Type here:
 
                         </span>
-                        <div class="text-container">
+                        <div class="text-container" style={{marginTop: "16px"}}>
                             {text}
-            <button onClick={this.toChanged}className="inclusify-btn">Inclusify</button>
+            <button onClick={this.toChanged} className="inclusify-btn">Submit</button>
                         </div>
                         
                     </Container>
