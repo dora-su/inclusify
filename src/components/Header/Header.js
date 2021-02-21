@@ -21,7 +21,6 @@ const Header = () => {
 </svg>
                        </span></Nav.Link>
                </LinkContainer>
-               <Nav.Link href="https://github.com/udyding/inclusify">About</Nav.Link>
                <Nav.Link href="https://github.com/udyding/inclusify">Code</Nav.Link>
            </Nav>
            </Navbar.Collapse>
