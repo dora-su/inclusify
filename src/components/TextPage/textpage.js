@@ -7,6 +7,26 @@ import ChangedWord from "./changedword"
 import ContentEditable from 'react-contenteditable'
 import $ from 'jquery'
 
+$.fn.selectRange = function (start, end) {
+    if (end === undefined) {
+        end = start;
+    }
+    return this.each(function () {
+        if ('selectionStart' in this) {
+            this.selectionStart = start;
+            this.selectionEnd = end;
+        } else if (this.setSelectionRange) {
+            this.setSelectionRange(start, end);
+        } else if (this.createTextRange) {
+            var range = this.createTextRange();
+            range.collapse(true);
+            range.moveEnd('character', end);
+            range.moveStart('character', start);
+            range.select();
+        }
+    });
+};
+
 class TextPage extends React.Component {
     constructor() {
         super();
@@ -21,6 +41,8 @@ class TextPage extends React.Component {
 
         this.replaceWord = this.replaceWord.bind(this);
 
+        this.setCaret = this.setCaret.bind(this)
+
         this.load = this.load.bind(this)
         this.state = {
             input_text: "hello my name is Hughy and I am a bee keeper",
@@ -29,45 +51,56 @@ class TextPage extends React.Component {
             caret_pos: 0,
             loading: false
         }
-        
+
     }
 
     onKeyDown(e) {
-        if (this.state.mode==1){
-        let text = this.state.input_text+String.fromCharCode(e.keyCode);
-        this.setState(
-            {
-                input_text: text,
-                mode: 0
-            })
-           
+        let car = this.state.caret_pos
+        if (this.state.mode == 1) {
+            let text = this.state.input_text + String.fromCharCode(e.keyCode);
+            e.target.value = text;
+            
+            this.updateInput(e);
+            this.setState(
+                {
+                    mode: 0,
+                })
+
         }
     }
 
+    setCaret(e) {
+        this.setState({ caret_pos: e.target.selectionStart })
+    }
     updateInput = (e) => {
 
-        let carat_pos
-        this.setState({ mode: 0, caret_pos: e.target.selectionStart })
-        this.setState({ input_text: e.target.value})
+        this.setState(
+            {
+                mode: 0,
+                caret_pos: e.target.selectionStart,
+                input_text: e.target.value,
+                loading: false
+            }
+        )
 
 
         var duration = 2000;
         clearTimeout(this.inputTimer);
-        this.inputTimer = setTimeout(()=>{
-            
-         this.setState({loading:true})
-         this.load()
-      }, duration);
+        this.inputTimer = setTimeout(() => {
+
+            this.setState({ loading: true })
+            this.load()
+        }, duration);
     }
 
     load = (e) => {
         var duration = 2000;
         clearTimeout(this.inputTimer);
-        this.inputTimer = setTimeout(()=>{
-        
-          this.toChanged()
-          this.setState({loading:false})
-      }, duration);
+        this.inputTimer = setTimeout(() => {
+
+            this.toChanged()
+            this.setState({ loading: false })
+        }, duration);
     }
 
     toChanged() {
@@ -75,94 +108,102 @@ class TextPage extends React.Component {
         this.setState({ mode: 1 })
     }
 
-    toEdit() {
-        this.setState({ mode: 0 })
-    //document.getElementById("text-area").selectionStart = 4;
+    async toEdit() {
+        await this.setState({ mode: 0 })
+        setTimeout($('.text-area').selectRange(this.state.caret_pos))
 
-        
     }
 
     replaceWord(old_index, new_word) {
         let changed = this.state.changed_text
-        changed[old_index] = new_word;
+        changed[old_index] = new_word + " ";
         console.log(changed);
-        this.setState({changed_text: changed, input_text: changed.join(" ")})
-      }
+        this.setState({ changed_text: changed, input_text: changed.join("") })
+    }
 
     changeText() {
 
         let text = this.state.input_text;
-        let index = this.state.caret_pos;
-        let text_arr = (text.substr(0, index) + "| " + text.substr(index)).split(" ")
+        let index_c = this.state.caret_pos;
+        let text_arr = (text.substring(0,index_c)+" ¶ "+text.substring(index_c)).split(" ")
         let new_text = [];
-        
+
+        let adjust = 0;
+        let before_caret = text_arr.indexOf("¶")-1;
+        console.log(before_caret)
         for (let i = 0; i < text_arr.length; i++) {
             //do some function to i to check if bad word
-            let word= text_arr[i].trim();
-            if (word=="hello") { //if word is bad word from function 
-                new_text.push(<ChangedWord index={i} original_word={word} synonyms={["boop","beep"]} 
-                replaceWord={this.replaceWord}/>) //get synonyms from json file
-                
-            } else {
-                new_text.push(" "+text_arr[i]+" ")
+            let word = text_arr[i].trim()
+            if (word == "hello") { //if word is bad word from function 
+                new_text.push(<span><ChangedWord index={i} original_word={word} synonyms={["boop", "beep"]}
+                    replaceWord={this.replaceWord} />{" "}</span>) //get synonyms from json file
+            } else if(word=="¶") {
+                new_text.push(<span className="caret">|</span>)
+            }
+            else {
+                if (i==before_caret){
+                    new_text.push(word)
+                } else {
+                new_text.push(word + " ")
+                }
             }
         }
 
-
-        this.setState({changed_text:new_text});
+        this.setState({ changed_text: new_text });
     }
 
     render() {
 
         let text = [];
         if (this.state.mode == 0) {
-            text.push(<textarea autoFocus id="text-area" className="text-area" onChange={this.updateInput} value={this.state.input_text}
-                selectionStart={this.state.caret_pos}
+            text.push(<textarea autoFocus id="text-area" onClick={this.setCaret} className="text-area" onChange={this.updateInput} value={this.state.input_text}
+                selectionEnd={this.state.caret_pos}
             />)
         } else {
 
             text.push(<div tabindex="0" className="changed-c"><div onClick={this.toEdit} className="changed-text-c" onKeyDown={this.onKeyDown}>
             </div>
-                {this.state.changed_text}</div>);
-           
+                {this.state.changed_text}
+            </div>);
+
         }
         return (
             <div>
-            <div>
-                
-            <Container className="page-container" onKeyDown={this.onKeyDown}>
-            <span class="text-title">Type here:</span>
+                <div>
+
+                    <Container className="page-container" onKeyDown={this.onKeyDown}>
+                        <span class="text-title">Type here:</span>
                         <div class="text-container">
                             {text}
 
                         </div>
-                
-            </Container>
+                        <button onClick={this.toChanged} />
+                    </Container>
+                </div>
+
+                <div className={(this.state.loading) ? "show" : "hide"}>
+                    <div class="loader">
+                        <div class="loader-inner">
+                            <div class="loader-line-wrap">
+                                <div class="loader-line"></div>
+                            </div>
+                            <div class="loader-line-wrap">
+                                <div class="loader-line"></div>
+                            </div>
+                            <div class="loader-line-wrap">
+                                <div class="loader-line"></div>
+                            </div>
+                            <div class="loader-line-wrap">
+                                <div class="loader-line"></div>
+                            </div>
+                            <div class="loader-line-wrap">
+                                <div class="loader-line"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-
-            <div className={(this.state.loading) ? "show" : "hide"}>
-            <div class="loader">
-	<div class="loader-inner">
-		<div class="loader-line-wrap">
-			<div class="loader-line"></div>
-		</div>
-		<div class="loader-line-wrap">
-			<div class="loader-line"></div>
-		</div>
-		<div class="loader-line-wrap">
-			<div class="loader-line"></div>
-		</div>
-		<div class="loader-line-wrap">
-			<div class="loader-line"></div>
-		</div>
-		<div class="loader-line-wrap">
-			<div class="loader-line"></div>
-		</div>
-	</div>
-</div>
-
-                </div>
-                </div>
             /* <input type="text" className="input-box"/>
                 <button className="go-button">Go</button>
             <NewText/> */

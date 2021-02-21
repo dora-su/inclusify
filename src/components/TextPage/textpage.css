@@ -36,15 +36,17 @@ textarea{
     width:60vw !important;
 }
 .original-word{
-    margin-left: 0.2em;
     padding: 0;
     border-style: none;
-    background:#fcd303;
+    
+
 }
 
 .word-btn{
     position:relative;
     z-index: 20;
+    background:#fcd303;
+    line-height: 1em !important;
     
 }
 
@@ -165,3 +167,34 @@ textarea{
 .show{
     display:block;
 }
+
+.choose-btn{
+    border: none;
+    margin: 0.25em;
+    border-radius: 3px;
+    background: #40de87;
+
+}
+
+.word-menu {
+    padding: 0.25em;
+}
+.revert-btn{
+    background:none;
+}
+
+@keyframes flash {
+    0% {color:black}
+    50% {color:white}
+  }
+
+  .caret {
+
+      animation-name:flash;
+      animation-duration:1s;
+      animation-iteration-count:infinite;
+      animation-timing-function: steps(1);
+      font-size: 1.4em;
+      font-weight:100;
+      width:0px;
+  }

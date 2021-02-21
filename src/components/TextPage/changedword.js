@@ -13,12 +13,13 @@ class ChangedWord extends React.Component {
 
   this.state = {
     menuOpen: false,
-    selected: -1
+    selected: -1,
+    anchorEl: null
   }
    }
 
-   openMenu() {
-     this.setState({menuOpen:true})
+   openMenu(e) {
+     this.setState({menuOpen:true, anchorEl: e.target})
    }
 
    closeMenu() {
@@ -43,20 +44,31 @@ class ChangedWord extends React.Component {
     
     let synonym_buttons = []
     for (let i =0; i < this.props.synonyms.length;i++){
-      synonym_buttons.push(<button onClick={this.changeWord} value={i}>{this.props.synonyms[i]}</button>)
+      synonym_buttons.push(<button className="choose-btn" onClick={this.changeWord} value={i}>{this.props.synonyms[i]}</button>)
     }
     return (
       <span>
-      <Popover className="word-menu" onClose={this.closeMenu}
+      <Popover  onClose={this.closeMenu}
       open={this.state.menuOpen}
-      transformOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
-        }}
-       
-    >
-    <button onClick={()=>{this.setState({selected:-1})}}>revert</button>
+      anchorEl={this.state.anchorEl}
+      anchorOrigin={{
+    vertical: 'top',
+    horizontal: 'center',
+  }}
+  transformOrigin={{
+    vertical: 'bottom',
+    horizontal: 'center',
+  }}>
+  <div className="word-menu">
+
     {synonym_buttons}
+    <button className="choose-btn revert-btn" onClick={()=>{this.setState({selected:-1})}}>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+  <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+</svg>
+    </button>
+    </div>
     </Popover>
       <button onClick={this.openMenu} 
       className={(this.props.selected==-1) ? "word-btn changed-word" : "word-btn original-word"}>{word}</button>
