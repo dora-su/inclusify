@@ -12,9 +12,9 @@ export default function LandingPage() {
           <img className={styles.logo} src={logo} />
         </div>
         <div>
-          <h2 className={styles.title}>
+          <h1 className={styles.title}>
             Help make your writing more inclusive, unbiased, and professional.
-          </h2>
+          </h1>
           <Button href="/app" size="lg">
             Get started
           </Button>
