@@ -32,8 +32,8 @@ function Content () {
           <Switch location={location}>
           
           <Route exact path="/app"><TextPage/></Route>
-          <Route exact path="/">hi</Route>
-          <Route exact path="/about"><TextPage/></Route>
+          <Route exact path="/"><Landing/></Route>
+       
           </Switch>
         </CSSTransition>
       </TransitionGroup>
