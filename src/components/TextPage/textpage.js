@@ -7,11 +7,8 @@ import ChangedWord from "./changedword"
 import ContentEditable from 'react-contenteditable'
 import $ from 'jquery'
 import badwords from "../../words.json"
-<<<<<<< HEAD
 import "../../font.css"
-=======
 
->>>>>>> c8e1994c621029d967c385e92fbb269fbf55d119
 $.fn.selectRange = function (start, end) {
     if (end === undefined) {
         end = start;
@@ -52,11 +49,7 @@ class TextPage extends React.Component {
 
         this.isBadWord = this.isBadWord.bind(this);
         this.state = {
-<<<<<<< HEAD
-            input_text: "autistic guys",
-=======
             input_text: "hello my name is Hughy and I am a bee keeper",
->>>>>>> c8e1994c621029d967c385e92fbb269fbf55d119
             changed_text: [],
             changed_raw:[],
             mode: 0,
