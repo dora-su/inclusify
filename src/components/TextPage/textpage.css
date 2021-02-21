@@ -42,14 +42,16 @@ textarea{
 .original-word{
     padding: 0;
     border-style: none;
+    background:#eb4034
     
 
 }
-
+.changed-word{
+    background: #40de87;
+}
 .word-btn{
     position:relative;
     z-index: 20;
-    background:#ffc800;
     line-height: 1em !important;
     
 }

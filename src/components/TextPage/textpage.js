@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import ChangedWord from "./changedword"
 import ContentEditable from 'react-contenteditable'
 import $ from 'jquery'
+import badwords from "../../words.json"
 
 $.fn.selectRange = function (start, end) {
     if (end === undefined) {
@@ -44,6 +45,8 @@ class TextPage extends React.Component {
         this.setCaret = this.setCaret.bind(this)
 
         this.load = this.load.bind(this)
+
+        this.isBadWord = this.isBadWord.bind(this);
         this.state = {
             input_text: "hello my name is Hughy and I am a bee keeper",
             changed_text: [],
@@ -119,6 +122,15 @@ class TextPage extends React.Component {
         this.setState({ changed_raw: changed, input_text: changed.join("") })
     }
 
+    isBadWord(word){
+        for (var key in badwords) {
+            if (key.toString()==word){
+                return true;
+            }
+        }
+        return false;
+
+    }
     changeText() {
 
         let text = this.state.input_text;
@@ -128,16 +140,16 @@ class TextPage extends React.Component {
 
         let adjust = 0;
         let space_count =0;
+
         for (let i = 0; i < text_arr.length; i++) {
             //do some function to i to check if bad word
             let word = text_arr[i]
-            console.log(word)
             if (word.trim()==""){
                 space_count+=1
             }
-            if (word == "hello" ) { //if word is bad word from function 
-                console.log(i)
-                new_text.push(<span><ChangedWord index={i} original_word={word} synonyms={["boop", "beep"]}
+            if (this.isBadWord(word)) { //if word is bad word from function 
+            
+                new_text.push(<span><ChangedWord index={i} original_word={word} synonyms={badwords[word]}
                     replaceWord={this.replaceWord} />{" "}</span>) //get synonyms from json file
             } else if(word=="¶") {
                 new_text.push(<span className="caret">|</span>)
@@ -157,7 +169,6 @@ class TextPage extends React.Component {
     }
 
     render() {
-
         let text = [];
         if (this.state.mode == 0) {
             text.push(<textarea autoFocus tabIndex="0" id="text-area" onClick={this.setCaret} className="text-area" onChange={this.updateInput} value={this.state.input_text}
