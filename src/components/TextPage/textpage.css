@@ -1,15 +1,54 @@
-.textpage-container {
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* .textpage-container {
     display: grid;
     grid-template-columns: 40% 10% 40%;
     padding:3em;
     height: 100vh;
-}
+} */
 
-.input-box {
+/* .input-box {
     height:80%;
     width:100%;
-}
+} */
 
 .go-button {
     height:3em;
+}
+  
+ .textpage-container {
+    /* padding-right: 0px;
+    padding-left: 0px; */
+    max-height: 100%;
+    max-width: 100%;
+    height: 100%;
+    width: 100%;
+  }
+  
+.container-fluid {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.textpage-row {
+    height: 100%;
+    width: 100%;
+}
+
+.textpage-input, .textpage-output{
+    padding: 15px;
+}
+
+.textpage-input{
+    background-color:#dddddd;
+}
+
+textarea{
+    width:100%;
+    font-family:"Roboto";  
+    font-size: 18px;
+    border: none;
+    background-color: transparent;
+    resize: none;
+    outline: none;
 }
