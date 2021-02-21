@@ -13,7 +13,7 @@ const Header = () => {
            <Navbar.Toggle aria-controls="basic-navbar-nav"/>
            <Navbar.Collapse id="basic-navbar-nav"s>
            <Nav className="ml-auto">
-
+                
                <LinkContainer to="/app">
                    <Nav.Link><span className="try">Go to app
                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
@@ -21,6 +21,8 @@ const Header = () => {
 </svg>
                        </span></Nav.Link>
                </LinkContainer>
+               <Nav.Link href="https://github.com/udyding/inclusify">About</Nav.Link>
+               <Nav.Link href="https://github.com/udyding/inclusify">Code</Nav.Link>
            </Nav>
            </Navbar.Collapse>
        </Navbar>

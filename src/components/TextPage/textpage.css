@@ -270,3 +270,10 @@ textarea{
     object-fit: contain;
 
 }
+
+.copy-text{
+    margin-top:3px;
+    font-size: 14px;
+    
+    text-align: right;
+}

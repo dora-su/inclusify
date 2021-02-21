@@ -56,7 +56,8 @@ class TextPage extends React.Component {
             changed_raw:[],
             mode: 0,
             caret_pos: 0,
-            loading: false
+            loading: false,
+            copied: ''
         }
 
     }
@@ -166,10 +167,18 @@ class TextPage extends React.Component {
                 }
             }
         }
-
         this.setState({ changed_text: new_text, changed_raw:text_arr });
        
     }
+    
+
+    copyToClipboard = (e) => {
+        document.getElementsByTagName('textarea').length!==0  ?      document.getElementsByTagName('textarea')[0].select() : document.getElementById('changed-text-area')[0].select();
+        document.execCommand('copy');
+        e.target.focus();
+        this.setState({copied: 'Copied!'})
+    }
+
 
     render() {
         let text = [];
@@ -179,7 +188,7 @@ class TextPage extends React.Component {
             />)
         } else {
 
-            text.push(<div tabindex="0" className="changed-c" onKeyDown={this.onKeyDown}><div onClick={this.toEdit} className="changed-text-c" onKeyDown={this.onKeyDown}>
+            text.push(<div tabindex="0" className="changed-c" id="changed-text-area" onKeyDown={this.onKeyDown}><div onClick={this.toEdit} className="changed-text-c" onKeyDown={this.onKeyDown}>
             </div>
                 {this.state.changed_text}
             </div>);
@@ -197,6 +206,7 @@ class TextPage extends React.Component {
                         </span>
                         <div class="text-container">
                             {text}
+<<<<<<< Updated upstream
             <button onClick={this.toChanged}className="inclusify-btn btn-1">Inclusify</button>
             <button className="inclusify-btn " onClick={() => {navigator.clipboard.writeText(this.state.input_text)}}>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
@@ -204,7 +214,11 @@ class TextPage extends React.Component {
   <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
 </svg>
             </button>
+=======
+                            <button onClick={this.toChanged}className="inclusify-btn">Inclusify</button>
+>>>>>>> Stashed changes
                         </div>
+                        {(document.queryCommandSupported('copy') && document.getElementsByTagName('textarea')!==null )&& <div className="copy-text"><button onClick={this.copyToClipboard}> Click to copy text.</button> {this.state.copied}</div>}
                         
                     </Container>
                 </div>
