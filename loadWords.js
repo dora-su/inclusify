@@ -3,7 +3,10 @@ const axios = require("axios")
 const fs = require('file-system')
 
 // this function loads in all the insensitive words as objects in words.json
-async function loadAllWords(words) {
+async function loadAllWords() {
+    let text = await fs.readFileSync('./biased-words.txt', 'utf-8')
+    let words = await text.split('\n')
+
     let allWords = {}
     for (let i = 0; i < words.length; i++) {
         allWords[words[i]] = await getSynonyms(words[i])
@@ -18,6 +21,7 @@ async function loadAllWords(words) {
     })
     
 }
+loadAllWords()
 
 // this function reads in a word and returns a list of synonyms for that word
 async function getSynonyms(word) {
