@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {LinkContainer} from 'react-router-bootstrap'
 import {Button} from 'react-bootstrap'
 import styles from "./landing.module.css";
 import logo from "../Header/logo.png";
