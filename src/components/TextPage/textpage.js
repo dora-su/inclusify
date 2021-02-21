@@ -49,7 +49,7 @@ class TextPage extends React.Component {
 
         this.isBadWord = this.isBadWord.bind(this);
         this.state = {
-            input_text: "hello my name is Hughy and I am a bee keeper",
+            input_text: "",
             changed_text: [],
             changed_raw:[],
             mode: 0,
@@ -173,7 +173,7 @@ class TextPage extends React.Component {
         let text = [];
         if (this.state.mode == 0) {
             text.push(<textarea autoFocus tabIndex="0" id="text-area" onClick={this.setCaret} className="text-area" onChange={this.updateInput} value={this.state.input_text}
-                selectionEnd={this.state.caret_pos}
+                selectionEnd={this.state.caret_pos} placeholder="type your text here"
             />)
         } else {
 
