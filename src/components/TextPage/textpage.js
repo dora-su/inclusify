@@ -184,9 +184,9 @@ class TextPage extends React.Component {
         }
         return (
             <div>
-               
-                    <img class="lower-tri" src="/triangles.png"/>
                 <div>
+
+                    <img class="lower-tri" src="/triangles.png"/>
 
                     <Container className="page-container" onKeyDown={this.onKeyDown}>
                         <span class="text-title">Type here:
