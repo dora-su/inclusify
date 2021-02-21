@@ -54,17 +54,10 @@ class TextPage extends React.Component {
 
     }
 
-    onKeyDown(e) {
+     async onKeyDown(e) {
         let car = this.state.caret_pos
         if (this.state.mode == 1) {
-            let text = this.state.input_text + String.fromCharCode(e.keyCode);
-            e.target.value = text;
-            
-            this.updateInput(e);
-            this.setState(
-                {
-                    mode: 0,
-                })
+            await this.toEdit()
 
         }
     }
