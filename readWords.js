@@ -5,7 +5,7 @@ async function readAll(words) {
     for (let i = 0; i < words.length; i++) {
         if (wordBank.hasOwnProperty(words[i])) {
             let word = words[i]
-            words[i] = {word: wordBank[words[i]]}
+            words[i] = [word, wordBank[words[i]]]
         }
     }
     console.log(words)
