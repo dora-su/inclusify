@@ -187,7 +187,7 @@ textarea{
 .word-menu {
     padding: 0.25em;
     max-width: 30em;
-    
+    height:fit-content;
 }
 .revert-btn{
     background:none;
