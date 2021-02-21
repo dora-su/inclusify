@@ -20,11 +20,14 @@ class TextPage extends React.Component {
         this.onKeyDown = this.onKeyDown.bind(this)
 
         this.replaceWord = this.replaceWord.bind(this);
+
+        this.load = this.load.bind(this)
         this.state = {
             input_text: "hello my name is Hughy and I am a bee keeper",
             changed_text: [],
             mode: 0,
-            caret_pos: 0
+            caret_pos: 0,
+            loading: false
         }
         
     }
@@ -45,12 +48,25 @@ class TextPage extends React.Component {
 
         let carat_pos
         this.setState({ mode: 0, caret_pos: e.target.selectionStart })
-        this.setState({ input_text: e.target.value })
+        this.setState({ input_text: e.target.value})
+
 
         var duration = 2000;
         clearTimeout(this.inputTimer);
         this.inputTimer = setTimeout(()=>{
+            
+         this.setState({loading:true})
+         this.load()
+      }, duration);
+    }
+
+    load = (e) => {
+        var duration = 2000;
+        clearTimeout(this.inputTimer);
+        this.inputTimer = setTimeout(()=>{
+        
           this.toChanged()
+          this.setState({loading:false})
       }, duration);
     }
 
@@ -73,7 +89,6 @@ class TextPage extends React.Component {
         this.setState({changed_text: changed, input_text: changed.join(" ")})
       }
 
-      
     changeText() {
 
         let text = this.state.input_text;
@@ -125,7 +140,7 @@ class TextPage extends React.Component {
             </Container>
             </div>
 
-            <div className="loading-c">
+            <div className={(this.state.loading) ? "show" : "hide"}>
             <div class="loader">
 	<div class="loader-inner">
 		<div class="loader-line-wrap">
