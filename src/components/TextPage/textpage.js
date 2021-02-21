@@ -138,7 +138,7 @@ class TextPage extends React.Component {
 
         let text = this.state.input_text;
         let index_c = this.state.caret_pos;
-        let text_arr = (text.substring(0,index_c)+" ¶ "+text.substring(index_c)).split(/(?=[ /n])|(?<=[ /n])/g)
+        let text_arr = (text.substring(0,index_c)+" ¶ "+text.substring(index_c)).split(/(?=[ .!,?])|(?<=[ .!,?])/g)
         let new_text = [];
 
         let adjust = 0;
