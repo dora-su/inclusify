@@ -31,6 +31,7 @@ textarea{
     line-height: 1.8em;
     padding: 2em;
     letter-spacing: 0.1em;
+    position: relative;
 }
 
 .page-container {
@@ -39,19 +40,20 @@ textarea{
     text-align: left !important;
 }
 .original-word{
-    padding: 0;
-    border-style: none;
-    background:#eb4034
+    background:#ff6666;
     
 
 }
 .changed-word{
-    background: #40de87;
+    background: #40de87 !important;
 }
 .word-btn{
+    padding: 0.2em;
+    border-style: none;
     position:relative;
     z-index: 20;
     line-height: 1em !important;
+    border-radius: 0.2em;
     
 }
 
@@ -184,6 +186,8 @@ textarea{
 
 .word-menu {
     padding: 0.25em;
+    max-width: 30em;
+    
 }
 .revert-btn{
     background:none;
@@ -203,4 +207,43 @@ textarea{
       font-size: 1.4em;
       font-weight:100;
       width:0px;
+  }
+
+  .warning {
+      color:#555;
+      padding: 0.5em;
+  }
+
+
+
+  .inclusify-btn {
+    position: absolute;
+    bottom:0.5em;
+    right:0.5em;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    font-family: Coolvetica;
+    font-size: 1.3em;
+    color: white;
+    border-radius: 20px;
+    border-style:none;
+    margin: 10px;
+    padding: 0.3em 0.6em;
+    background-size: 200% auto;
+    color: white;
+
+    box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    background-image: linear-gradient(to right, #ff0000 0%, #ffba91 50%, #ff5e79 100%);
+    transition: 0.5s; 
+}
+
+.inclusify-btn:hover{
+    background-position: right center;
+}
+
+@media only screen and (max-width: 600px) {
+    .page-container  {
+      width: 90vw !important;
+    }
   }
