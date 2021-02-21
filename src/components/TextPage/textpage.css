@@ -235,7 +235,7 @@ textarea{
     color: white;
 
     box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
-    background-image: linear-gradient(to right, #ff0000 0%, #ffba91 50%, #ff5e79 100%);
+    background-image: linear-gradient(to right, #fc3d03 0%, #fc8c03 50%, #fc0303 100%);
     transition: 0.5s; 
 }
 
@@ -248,3 +248,22 @@ textarea{
       width: 90vw !important;
     }
   }
+
+.upper-tri{
+    position: fixed;
+    top:0;
+    right:0;
+    width: 10em;
+    object-fit: contain;
+    z-index: 100
+}
+
+
+.lower-tri{
+    position: fixed;
+    bottom:0;
+    left:0;
+    width: 15em;
+    object-fit: contain;
+
+}

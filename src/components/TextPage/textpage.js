@@ -184,6 +184,8 @@ class TextPage extends React.Component {
         }
         return (
             <div>
+               
+                    <img class="lower-tri" src="/triangles.png"/>
                 <div>
 
                     <Container className="page-container" onKeyDown={this.onKeyDown}>
