@@ -4,6 +4,7 @@ import styles from "./landing.module.css";
 import logo from "../Header/logo.png";
 import illustration from './illustration.png'
 import "../../font.css"
+import {Link} from 'react-router-dom'
 
 export default function LandingPage() {
   return (
@@ -15,9 +16,11 @@ export default function LandingPage() {
           <h1 className={styles.title}>
             Help make your writing more inclusive, unbiased, and professional.
           </h1>
-          <Button href="/app" size="lg">
+          <Link to="/app">
+          <Button size="lg">
             Get started
           </Button>
+          </Link>
           <img className={styles.picture} src={illustration} />
         </div>
       </div>

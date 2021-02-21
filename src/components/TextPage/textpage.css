@@ -223,7 +223,7 @@ textarea {
 .inclusify-btn {
   position: absolute;
   bottom: 0.7em;
-  right: 0.5em;
+  right: 0.7em;
   display: block;
   text-align: center;
   text-decoration: none;
@@ -232,6 +232,7 @@ textarea {
   color: white;
   border-radius: 7px;
   border-style: none;
+
   padding: 0.3em 0.6em;
   background-size: 200% auto;
   color: white;
@@ -280,8 +281,23 @@ textarea {
   object-fit: contain;
 }
 
-.copy-text {
-  margin-top: 3px;
-  font-size: 14px;
-  text-align: right;
+.copy-text{
+    margin-top:4px;
+    font-size: 14px;
+    color: #999999;
+    text-align: right;
+    margin-right:0;
+    padding: 0;
+}
+
+.copy-text-button{
+    text-decoration: underline solid transparent;
+  transition: text-decoration 1s ease;
+    color: #999999;
+    margin:0;
+    padding:0;
+}
+
+.copy-text-button:hover {
+    text-decoration: underline;
 }
