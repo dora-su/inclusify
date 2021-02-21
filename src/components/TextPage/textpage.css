@@ -249,6 +249,10 @@ textarea {
   transition: 0.5s;
 }
 
+.inclusify-btn.btn-1 {
+  right: 3em;
+}
+
 .inclusify-btn:hover {
   background-position: right center;
 }
@@ -274,4 +278,11 @@ textarea {
   left: 0;
   width: 15em;
   object-fit: contain;
+}
+
+.copy-text {
+  margin-top: 3px;
+  font-size: 14px;
+
+  text-align: right;
 }

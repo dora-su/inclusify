@@ -18,8 +18,10 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 function Content () {
   const location = useLocation()
-
+  // console.log("uselocation path:", location.pathname)
   return (
+    <div>
+      {location.pathname!=="/" && <Header/>}
     <div className='fill content'>
       <TransitionGroup>
         <CSSTransition
@@ -38,15 +40,14 @@ function Content () {
         </CSSTransition>
       </TransitionGroup>
     </div>
+    </div>
   )
 }
 
 class App extends React.Component {
-  
   render() {
     return (
       <Router>
-      <Header/>
       <Content/>
       </Router>
 
