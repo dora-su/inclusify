@@ -8,7 +8,7 @@ class NewText extends React.Component {
 
   render() {
     return (
-<div>new</div>
+<div className="new-text">new</div>
     
     );
   }

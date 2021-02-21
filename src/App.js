@@ -20,6 +20,7 @@ class App extends React.Component {
     return (
       <Router>
       <div>
+        <div className="nav-bar">
         <nav>
           <ul>
             <li>
@@ -30,6 +31,7 @@ class App extends React.Component {
             </li>
           </ul>
         </nav>
+        </div>
         <Switch>
           <Route path="/app">
             <TextPage />
