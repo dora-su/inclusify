@@ -41,14 +41,20 @@ class TextPage extends React.Component {
         }
     }
 
-    updateInput(e) {
+    updateInput = (e) => {
 
         let carat_pos
         this.setState({ mode: 0, caret_pos: e.target.selectionStart })
         this.setState({ input_text: e.target.value })
+
+        var duration = 2000;
+        clearTimeout(this.inputTimer);
+        this.inputTimer = setTimeout(()=>{
+          this.toChanged()
+      }, duration);
     }
 
-    toChanged(e) {
+    toChanged() {
         this.changeText()
         this.setState({ mode: 1 })
     }
@@ -106,25 +112,42 @@ class TextPage extends React.Component {
            
         }
         return (
-            <Container onKeyDown={this.onKeyDown}
-                fluid={true}
-                style={{ paddingLeft: 0, paddingRight: 0 }}
-            >
-                <ChangedWord original_word="hello" synonyms={["hey there", "hellooo"]} />
-                <Row className="textpage-row" style={{ marginRight: 0, marginLeft: 0 }}>
-                    <Col
-                        xs="12"
-                        md="6"
-                        className="textpage-input"
-                    >
-                        <div>
+            <div>
+            <div>
+                
+            <Container className="page-container" onKeyDown={this.onKeyDown}>
+            <span class="text-title">Type here:</span>
+                        <div class="text-container">
                             {text}
 
                         </div>
-                    </Col>
-                </Row>
-                <button tabindex="10" onClick={this.toChanged}>gobutton(test)</button>
+                
             </Container>
+            </div>
+
+            <div className="loading-c">
+            <div class="loader">
+	<div class="loader-inner">
+		<div class="loader-line-wrap">
+			<div class="loader-line"></div>
+		</div>
+		<div class="loader-line-wrap">
+			<div class="loader-line"></div>
+		</div>
+		<div class="loader-line-wrap">
+			<div class="loader-line"></div>
+		</div>
+		<div class="loader-line-wrap">
+			<div class="loader-line"></div>
+		</div>
+		<div class="loader-line-wrap">
+			<div class="loader-line"></div>
+		</div>
+	</div>
+</div>
+
+                </div>
+                </div>
             /* <input type="text" className="input-box"/>
                 <button className="go-button">Go</button>
             <NewText/> */

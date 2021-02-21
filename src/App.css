@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Coolvetica';
+  src: url('./coolvetica.ttf');
+}
+
 .nav-bar {
  
   left:0;
