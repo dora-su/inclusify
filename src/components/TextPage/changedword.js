@@ -60,8 +60,9 @@ class ChangedWord extends React.Component {
     horizontal: 'center',
   }}>
   <div className="word-menu">
-
-    {synonym_buttons}
+{(synonym_buttons.length==0) ? <span className="warning">Sensitive word no alternative
+</span> : <div className="btn-con">{synonym_buttons}</div> }
+    
     <button className="choose-btn revert-btn" onClick={()=>{this.setState({selected:-1})}}>
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
@@ -71,7 +72,7 @@ class ChangedWord extends React.Component {
     </div>
     </Popover>
       <button onClick={this.openMenu} 
-      className={(this.props.selected==-1) ? "word-btn changed-word" : "word-btn original-word"}>{word}</button>
+      className={(this.state.selected==-1) ? "word-btn original-word" : "word-btn changed-word"}>{word}</button>
       </span>
     );
   }
