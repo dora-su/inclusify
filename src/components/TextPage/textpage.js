@@ -7,6 +7,7 @@ import ChangedWord from "./changedword"
 import ContentEditable from 'react-contenteditable'
 import $ from 'jquery'
 import badwords from "../../words.json"
+import "../../font.css"
 
 $.fn.selectRange = function (start, end) {
     if (end === undefined) {
@@ -186,11 +187,15 @@ class TextPage extends React.Component {
             <div>
                 <div>
 
+                    <img class="lower-tri" src="/triangles.png"/>
+
                     <Container className="page-container" onKeyDown={this.onKeyDown}>
-                        <span class="text-title">Type here:</span>
+                        <span class="text-title">Type here:
+
+                        </span>
                         <div class="text-container">
                             {text}
-
+            <button onClick={this.toChanged}className="inclusify-btn">Inclusify</button>
                         </div>
                         
                     </Container>
