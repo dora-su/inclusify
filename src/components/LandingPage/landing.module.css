@@ -1,19 +1,20 @@
 .container {
-  margin-top: 50px;
+  margin-top: 10px;
   padding: 50px 0;
-  margin-left: 100px;
+  margin-left: 110px;
   margin-right: 100px;
   text-align: left;
 }
 
 .title {
   margin-bottom: 40px;
-  font-size: 50px;
+  font-size: 100px;
   max-width: 800px;
   margin-top: 40px;
 }
 
 .logo {
+  margin-top: 40px;
   width: 12%;
   height: 12%;
 }
@@ -24,10 +25,23 @@
 }
 
 .picture {
-  position: absolute;
-  bottom:0;
-  width: 60%;
-  height: 60%;
-  right:0;
-  object-fit: contain;
+    position: absolute;
+    bottom:0;
+    width: 60%;
+    height: 60%;
+    right:0;
+    object-fit: contain;
+}
+
+button {
+  border: none;
+  outline: none !important;
+  font-family: Coolvetica !important;
+}
+
+@media only screen and (max-width: 800px) {
+  .logo {
+    width: 50%;
+    height: 50%;
+  }
 }

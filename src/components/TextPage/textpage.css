@@ -222,22 +222,20 @@ textarea {
 
 .inclusify-btn {
   position: absolute;
-  bottom: 0.5em;
+  bottom: 0.7em;
   right: 0.5em;
   display: block;
   text-align: center;
   text-decoration: none;
   font-family: Coolvetica;
-  font-size: 1.3em;
+  font-size: 1em;
   color: white;
-  border-radius: 20px;
+  border-radius: 7px;
   border-style: none;
-  margin: 10px;
-  margin-right: 75px;
-  margin-bottom: 20px;
   padding: 0.3em 0.6em;
   background-size: 200% auto;
   color: white;
+ 
 
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   background-image: linear-gradient(
@@ -250,7 +248,9 @@ textarea {
 }
 
 .inclusify-btn.btn-1 {
-  right: 3em;
+  right: 2.5em;
+  font-size: 1.3em;
+  bottom: 0.5em;
 }
 
 .inclusify-btn:hover {
@@ -283,6 +283,5 @@ textarea {
 .copy-text {
   margin-top: 3px;
   font-size: 14px;
-
   text-align: right;
 }

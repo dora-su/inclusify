@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 import {Navbar, Nav} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap'
 import "./header.css"
-import logo from './logo.png';
+
 const Header = () => {
     return (
+        <div class="hh">
        <Navbar variant="light" className="custom-nav" sticky="top" expand="lg">
            <LinkContainer to="/">
-           <Navbar.Brand><img className="logo-img" src={logo}/></Navbar.Brand>
+           <Navbar.Brand><img className="logo-img" src={"/logo-icon.png"}/></Navbar.Brand>
            </LinkContainer>
            <Navbar.Toggle aria-controls="basic-navbar-nav"/>
            <Navbar.Collapse id="basic-navbar-nav"s>
@@ -21,10 +22,11 @@ const Header = () => {
 </svg>
                        </span></Nav.Link>
                </LinkContainer>
-               <Nav.Link href="https://github.com/udyding/inclusify">Code</Nav.Link>
+               <Nav.Link href="https://github.com/udyding/inclusify"><span className="code">Code</span></Nav.Link>
            </Nav>
            </Navbar.Collapse>
        </Navbar>
+       </div>
     );
   };
   

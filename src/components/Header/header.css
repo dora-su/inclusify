@@ -1,6 +1,7 @@
 .header {
     display: flex;
     justify-content: center;
+
   }
   
   .headerlink-title {
@@ -25,4 +26,20 @@
       margin-left:40px;
       margin-top:5px;
       margin-right:40px;
+  }
+
+  .try {
+    font-size:0.7em;
+    text-decoration: underline;
+    color: grey;
+    transition: 0.5s;
+  }
+  .try:hover{
+color:black;
+transition: 0.5s;
+  }
+
+  .code {
+    font-size:0.7em;
+    transition: 0.5s;
   }

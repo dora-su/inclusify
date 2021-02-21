@@ -21,7 +21,7 @@ function Content () {
   // console.log("uselocation path:", location.pathname)
   return (
     <div>
-      {location.pathname!=="/" && <Header/>}
+      <Header/>
     <div className='fill content'>
       <TransitionGroup>
         <CSSTransition

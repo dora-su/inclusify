@@ -3,25 +3,24 @@ import {Button} from 'react-bootstrap'
 import styles from "./landing.module.css";
 import logo from "../Header/logo.png";
 import illustration from './illustration.png'
+import "../../font.css"
 
 export default function LandingPage() {
   return (
-    <>
       <div className={styles.container}>
         <div>
           <img className={styles.logo} src={logo} />
         </div>
         <div>
-          <h2 className={styles.title}>
+          <h1 className={styles.title}>
             Help make your writing more inclusive, unbiased, and professional.
-          </h2>
+          </h1>
           <Button href="/app" size="lg">
             Get started
           </Button>
           <img className={styles.picture} src={illustration} />
         </div>
       </div>
-    </>
   );
 }
 // class LandingPage extends React.Component {
