@@ -48,8 +48,6 @@ class TextPage extends React.Component {
         this.load = this.load.bind(this)
 
         this.isBadWord = this.isBadWord.bind(this);
-
-
         this.state = {
             input_text: "",
             changed_text: [],
@@ -139,7 +137,7 @@ class TextPage extends React.Component {
 
         let text = this.state.input_text;
         let index_c = this.state.caret_pos;
-        let text_arr = (text.substring(0,index_c)+" ¶ "+text.substring(index_c)).split(/(?=[ .!,\n])|(?<=[ .!,\n])/g)
+        let text_arr = (text.substring(0,index_c)+" ¶ "+text.substring(index_c)).split(/(?=[ /n])|(?<=[ /n])/g)
         let new_text = [];
 
         let adjust = 0;
@@ -173,7 +171,7 @@ class TextPage extends React.Component {
     
 
     copyToClipboard = (e) => {
-        document.getElementsByTagName('textarea').length!==0  ?      document.getElementsByTagName('textarea')[0].select() : document.getElementById('changed-text-area')[0].select();
+        document.getElementsByTagName('textarea').length!==0  ?  document.getElementsByTagName('textarea')[0].select() : document.getElementById('changed-text-area')[0].select();
         document.execCommand('copy');
         e.target.focus();
         this.setState({copied: 'Copied!'})
@@ -183,8 +181,8 @@ class TextPage extends React.Component {
     render() {
         let text = [];
         if (this.state.mode == 0) {
-            text.push(<textarea autoFocus tabIndex="0" id="text-area" onClick={this.setCaret} className="text-area" onChange={this.updateInput} value={this.state.input_text}
-                selectionEnd={this.state.caret_pos} placeholder="Type your text here"
+            text.push(<textarea autoFocus placeholder="Type your text here." tabIndex="0" id="text-area" onClick={this.setCaret} className="text-area" onChange={this.updateInput} value={this.state.input_text}
+                selectionEnd={this.state.caret_pos}
             />)
         } else {
 
@@ -206,21 +204,7 @@ class TextPage extends React.Component {
                         </span>
                         <div class="text-container">
                             {text}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            <button onClick={this.toChanged}className="inclusify-btn btn-1">Inclusify</button>
-            <button className="inclusify-btn " onClick={() => {navigator.clipboard.writeText(this.state.input_text)}}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
-  <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
-  <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
-</svg>
-            </button>
-=======
                             <button onClick={this.toChanged}className="inclusify-btn">Inclusify</button>
->>>>>>> Stashed changes
-=======
-                            <button onClick={this.toChanged}className="inclusify-btn">Inclusify</button>
->>>>>>> Stashed changes
                         </div>
                         {(document.queryCommandSupported('copy') && document.getElementsByTagName('textarea')!==null )&& <div className="copy-text"><button onClick={this.copyToClipboard}> Click to copy text.</button> {this.state.copied}</div>}
                         
