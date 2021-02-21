@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/inclusify/static/css/main.7e7c37c9.chunk.css",
+    "main.js": "/inclusify/static/js/main.5d7db215.chunk.js",
+    "main.js.map": "/inclusify/static/js/main.5d7db215.chunk.js.map",
+    "runtime-main.js": "/inclusify/static/js/runtime-main.90329db4.js",
+    "runtime-main.js.map": "/inclusify/static/js/runtime-main.90329db4.js.map",
+    "static/css/2.150d169a.chunk.css": "/inclusify/static/css/2.150d169a.chunk.css",
+    "static/js/2.351f7c51.chunk.js": "/inclusify/static/js/2.351f7c51.chunk.js",
+    "static/js/2.351f7c51.chunk.js.map": "/inclusify/static/js/2.351f7c51.chunk.js.map",
+    "index.html": "/inclusify/index.html",
+    "static/css/2.150d169a.chunk.css.map": "/inclusify/static/css/2.150d169a.chunk.css.map",
+    "static/css/main.7e7c37c9.chunk.css.map": "/inclusify/static/css/main.7e7c37c9.chunk.css.map",
+    "static/js/2.351f7c51.chunk.js.LICENSE.txt": "/inclusify/static/js/2.351f7c51.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/inclusify/static/media/coolvetica.42f59941.ttf",
+    "static/media/illustration.9e3ab842.png": "/inclusify/static/media/illustration.9e3ab842.png",
+    "static/media/logo.6ce24c58.svg": "/inclusify/static/media/logo.6ce24c58.svg",
+    "static/media/logo.84689617.png": "/inclusify/static/media/logo.84689617.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.90329db4.js",
+    "static/css/2.150d169a.chunk.css",
+    "static/js/2.351f7c51.chunk.js",
+    "static/css/main.7e7c37c9.chunk.css",
+    "static/js/main.5d7db215.chunk.js"
+  ]
+}
