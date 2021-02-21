@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import ChangedWord from './changedword.js'
 
 class NewText extends React.Component {
   constructor() {
-	super();
+    super();
+    //props: input_text
    }
-
 
   render() {
     return (
